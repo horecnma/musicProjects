@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.util.List;
 import java.util.Vector;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.apache.log4j.BasicConfigurator;
@@ -21,7 +21,7 @@ public class AllTracksDownloader {
     private static final Logger log = Logger.getLogger(AllTracksDownloader.class);
 
     private final TrackLoader trackLoader = new TrackLoader();
-    private final Executor exec = Executors.newFixedThreadPool(10);
+    private final ExecutorService exec = Executors.newFixedThreadPool(10);
     private final List<Wrong> exceptions = new Vector<Wrong>();
     private final FileDownoloadDecision fileDownoloadDecision = new FileDownoloadDecision();
     private int i = 0;
@@ -33,7 +33,7 @@ public class AllTracksDownloader {
     }
 
     public void getAllTracks() throws IOException {
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 1; i++) {
             Document doc = Jsoup.connect("https://svoeradio.fm/air/artists/?paged=" + (i + 1)).get();
             Elements bandLinks = doc.select("li.artist-list-point a");
             for (Element bandLink : bandLinks) {
@@ -59,6 +59,7 @@ public class AllTracksDownloader {
             }
         }
         System.out.println("Завершение");
+        exec.shutdown();
     }
 
     public void doAsyncDownload(String bandName, String trackName) {
