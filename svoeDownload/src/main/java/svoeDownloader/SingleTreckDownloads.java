@@ -7,7 +7,8 @@ import org.apache.log4j.Logger;
 /**
  * @author mnikolaev
  */
-public class Main {
+public class SingleTreckDownloads
+{
     public static void main(String[] args) throws Exception {
         FileSaver f = new FileSaver();
         TrackLoader t = new TrackLoader();

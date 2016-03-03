@@ -33,7 +33,7 @@ public class AllTracksDownloader {
     }
 
     public void getAllTracks() throws IOException {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 6; i++) {
             Document doc = Jsoup.connect("https://svoeradio.fm/air/artists/?paged=" + (i + 1)).get();
             Elements bandLinks = doc.select("li.artist-list-point a");
             for (Element bandLink : bandLinks) {

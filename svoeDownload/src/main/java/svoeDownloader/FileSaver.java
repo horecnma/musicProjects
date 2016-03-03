@@ -11,7 +11,7 @@ import org.apache.commons.io.IOUtils;
  * @author mnikolaev
  */
 public class FileSaver {
-    public static final String DESTINATION = "d:\\temp\\";
+    public static final String DESTINATION = "c:\\temp\\";
 
     public void saveFile(InputStream inputStream, String bandName, String trackName) throws IOException {
         FileOutputStream output = new FileOutputStream(getName(bandName, trackName, DESTINATION));

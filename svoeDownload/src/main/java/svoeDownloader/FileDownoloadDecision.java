@@ -7,12 +7,14 @@ import java.io.File;
  */
 public class FileDownoloadDecision {
     public static final String[] ARCHIVES = new String[]{
-            "d:\\RELAXATION\\radio\\fromSite\\",
-            "d:\\RELAXATION\\radio\\fromSite\\2015_01_14_update\\",
-            "d:\\RELAXATION\\radio\\fromSite\\2015_02_26_update\\",
-            "d:\\RELAXATION\\radio\\fromSite\\2015_06_29_update\\",
-            "d:\\RELAXATION\\radio\\fromSite\\2015_12_01_update\\",
-            "d:\\RELAXATION\\radio\\fromSite\\trash\\"
+            "C:\\RELAXATION\\radio\\fromSite\\",
+            "C:\\RELAXATION\\radio\\fromSite\\2015_01_14_update\\",
+            "C:\\RELAXATION\\radio\\fromSite\\2015_02_26_update\\",
+            "C:\\RELAXATION\\radio\\fromSite\\2015_06_29_update\\",
+            "C:\\RELAXATION\\radio\\fromSite\\2015_12_01_update\\",
+            "C:\\RELAXATION\\radio\\fromSite\\2016_03_03_update\\",
+            "C:\\RELAXATION\\radio\\fromSite\\trash\\",
+            "c:\\temp\\"
     };
 
     public boolean shouldDownload(String bandName, String trackName) {
