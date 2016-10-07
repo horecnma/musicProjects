@@ -51,6 +51,8 @@ public class TrackLoader {
         String requestParams = "";
         requestParams += "art=" + wrap(Base64.getEncoder().encodeToString(bandName.getBytes("UTF-8")));
         requestParams += "&trk=" + wrap(Base64.getEncoder().encodeToString(trackName.getBytes("UTF-8")));
+//        requestParams += "art=" + wrap(DatatypeConverter.printBase64Binary(bandName.getBytes("UTF-8")));
+//        requestParams += "&trk=" + wrap(DatatypeConverter.printBase64Binary(trackName.getBytes("UTF-8")));
         requestParams += "&high=" + "yes";
         con.setDoOutput(true);
         DataOutputStream wr = new DataOutputStream(con.getOutputStream());

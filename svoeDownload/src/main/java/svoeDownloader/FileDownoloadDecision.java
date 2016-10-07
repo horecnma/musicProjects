@@ -13,7 +13,8 @@ public class FileDownoloadDecision {
             "C:\\RELAXATION\\radio\\fromSite\\2015_06_29_update\\",
             "C:\\RELAXATION\\radio\\fromSite\\2015_12_01_update\\",
             "C:\\RELAXATION\\radio\\fromSite\\2016_03_03_update\\",
-            "C:\\RELAXATION\\radio\\fromSite\\trash\\",
+            "C:\\RELAXATION\\radio\\fromSite\\2016_07_13_update\\",
+            "C:\\RELAXATION\\radio\\trash\\",
             "c:\\temp\\"
     };
 

@@ -3,11 +3,11 @@ package move;
 import java.io.File;
 import java.io.IOException;
 
-import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+
+import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
 
 /**
  * @author mnikolaev
@@ -18,7 +18,7 @@ public final class Mover {
 
     public static void main(String[] args) throws IOException {
 //        groupFiles("f:\\music\\я_radio\\", 100);
-        groupFilesByArtist("g:\\music\\я_radio\\");
+        groupFilesByArtist("D:\\music\\я_radio\\");
     }
 
     /**

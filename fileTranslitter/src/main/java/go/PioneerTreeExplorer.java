@@ -17,7 +17,7 @@ public class PioneerTreeExplorer {
     }
 
     public static void main(String[] args) {
-        File startDir = new File("g:\\music\\");
+        File startDir = new File("d:\\music\\");
 
         RememberNodeFunction remember = new RememberNodeFunction();
         PioneerTreeExplorer pioneerTreeExplorer = new PioneerTreeExplorer(remember);
