@@ -20,19 +20,22 @@ import org.jsoup.select.Elements;
 public class AllTracksDownloader {
     private static final Logger log = Logger.getLogger(AllTracksDownloader.class);
 
-    private final TrackLoader trackLoader = new TrackLoader();
+    private final SingleTrackDownloader trackLoader = new SingleTrackDownloader();
     private final ExecutorService exec = Executors.newFixedThreadPool(10);
     private final List<Wrong> exceptions = new Vector<Wrong>();
     private final FileDownoloadDecision fileDownoloadDecision = new FileDownoloadDecision();
-    private int i = 0;
+    private int downloadCounter = 0;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)
+            throws IOException {
         BasicConfigurator.configure();
         AllTracksDownloader allTracksDownloader = new AllTracksDownloader();
-        allTracksDownloader.getAllTracks();
+        allTracksDownloader.downloadAllTracks();
     }
 
-    public void getAllTracks() throws IOException {
+    public synchronized void downloadAllTracks()
+            throws IOException {
+        downloadCounter = 0;
         for (int i = 0; i < 10; i++) {
             Document doc = Jsoup.connect("https://svoeradio.fm/air/artists/?paged=" + (i + 1)).get();
             Elements bandLinks = doc.select("li.artist-list-point a");
@@ -51,7 +54,7 @@ public class AllTracksDownloader {
                         }
                     }
                 } catch (SocketTimeoutException e) {
-                    log.error(e,e);
+                    log.error(e, e);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -63,18 +66,18 @@ public class AllTracksDownloader {
 
     public void doAsyncDownload(String bandName, String trackName) {
         exec.execute(() -> {
-            int k = i++;
+            int currentDownloadNumber = downloadCounter++;
             try {
                 trackLoader.doLoadFile(bandName, trackName);
-                System.out.println(k + " ок  " + bandName + " - " + trackName);
+                System.out.println(currentDownloadNumber + " ок  " + bandName + " - " + trackName);
             } catch (Exception e) {
                 trackLoader.delete(bandName, trackName);
                 try {
                     trackLoader.doLoadFile(bandName, " " + trackName);
-                    System.out.println(k + " ок  " + bandName + " - " + trackName);
+                    System.out.println(currentDownloadNumber + " ок  " + bandName + " - " + trackName);
                 } catch (Exception e1) {
                     trackLoader.delete(bandName, trackName);
-                    System.err.println(k + "    " + bandName + " - " + trackName + "\t\t\t" + e.getMessage());
+                    System.err.println(currentDownloadNumber + "    " + bandName + " - " + trackName + "\t\t\t" + e.getMessage());
                     exceptions.add(new Wrong(e, bandName, trackName));
                 }
             }

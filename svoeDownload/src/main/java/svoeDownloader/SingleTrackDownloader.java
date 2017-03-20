@@ -14,8 +14,8 @@ import org.apache.log4j.Logger;
 /**
  * @author mnikolaev
  */
-public class TrackLoader {
-    private static final Logger log = Logger.getLogger(TrackLoader.class);
+public class SingleTrackDownloader {
+    private static final Logger log = Logger.getLogger(SingleTrackDownloader.class);
     private static final String USER_AGENT = "Mozilla/5.0";
 
     private final FileSaver fileSaver = new FileSaver();
