@@ -18,7 +18,7 @@ public final class Mover {
 
     public static void main(String[] args) throws IOException {
 //        groupFiles("f:\\music\\я_radio\\", 100);
-        groupFilesByArtist("D:\\music\\я_radio\\");
+        groupFilesByArtist("/media/mnikolaev/FLASH_8_GB/music/я_radio/");
     }
 
     /**

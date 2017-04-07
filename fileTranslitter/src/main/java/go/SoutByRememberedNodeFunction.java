@@ -11,10 +11,11 @@ public class SoutByRememberedNodeFunction
         implements NodeFunction {
 
     private final List<String> absPath;
-    private final SoutNodeFunction soutNodeFunction = new SoutNodeFunction();
+    private final SoutNodeFunction soutNodeFunction;
 
-    public SoutByRememberedNodeFunction(RememberNodeFunction absPath) {
+    public SoutByRememberedNodeFunction(RememberNodeFunction absPath, int musicRootDepth) {
         this.absPath = absPath.getAbsFilePaths();
+        soutNodeFunction = new SoutNodeFunction(musicRootDepth);
     }
 
     @Override

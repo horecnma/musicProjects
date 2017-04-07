@@ -6,10 +6,12 @@ import myPackage.IsDirFileFilter;
 import myPackage.IsFileFileFilter;
 
 /**
+ * обойти дерево файлов в порядке проигрывания записей в плеере Pioneer
+ * 
  * User: mnikolaev<br>
  * Date: 06.11.13<br>
  */
-public class PioneerTreeExplorer {
+public class PioneerTreeExplorer implements TreeExplorer {
     private final NodeFunction worker;
 
     public PioneerTreeExplorer(NodeFunction worker) {
@@ -17,25 +19,23 @@ public class PioneerTreeExplorer {
     }
 
     public static void main(String[] args) {
-        File startDir = new File("d:\\music\\");
+        // sudo fatsort -D MUSIC /dev/sdb1
+        File startDir = new File("/media/mnikolaev/FLASH_8_GB/music/");
 
         RememberNodeFunction remember = new RememberNodeFunction();
-        PioneerTreeExplorer pioneerTreeExplorer = new PioneerTreeExplorer(remember);
+        FilesBeforeDirsTreeExplorer pioneerTreeExplorer = new FilesBeforeDirsTreeExplorer(remember);
         pioneerTreeExplorer.explore(startDir);
 
-        SoutByRememberedNodeFunction nodeFunction = new SoutByRememberedNodeFunction(remember);
+        SoutByRememberedNodeFunction nodeFunction = new SoutByRememberedNodeFunction(remember, 3);
 
         //        FilesBeforeDirsTreeExplorer byTreeExplorer = new FilesBeforeDirsTreeExplorer(nodeFunction);
         //        byTreeExplorer.explore(startDir);
 
-        PioneerTreeExplorer pionerSour = new PioneerTreeExplorer(nodeFunction);
+        FilesBeforeDirsTreeExplorer pionerSour = new FilesBeforeDirsTreeExplorer(nodeFunction);
         pionerSour.explore(startDir);
     }
 
-    /**
-     * обойти дерево файлов в порядке проигрывания записей в плеере и для каждой папки и файла применить NodeFunction
-     * @param startDir стартовая директория
-     */
+    @Override
     public void explore(File startDir) {
         for (int i=0; i<7; i++)
         {

@@ -8,7 +8,16 @@ import java.io.File;
  */
 public class SoutNodeFunction
         implements NodeFunction {
+
+    private int musicRootDepth;
     int i = 0;
+
+    /**
+     * @param musicRootDepth linux - 3, windows = 1
+     */
+    public SoutNodeFunction(int musicRootDepth) {
+        this.musicRootDepth = musicRootDepth;
+    }
 
     @Override
     public void handleNode(File f) {
@@ -24,7 +33,7 @@ public class SoutNodeFunction
     }
 
     public void soutDir(File f) {
-        int starCount = 6 - f.getAbsolutePath().split("\\\\").length;
+        int starCount = musicRootDepth + 6 - f.getAbsolutePath().split(File.separator).length;
         if(starCount == 3)
         {
             System.out.println("-------------------------------------------");
