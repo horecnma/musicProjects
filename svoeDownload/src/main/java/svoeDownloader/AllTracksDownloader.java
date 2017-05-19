@@ -7,7 +7,6 @@ import java.util.Vector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,17 +19,15 @@ import org.jsoup.select.Elements;
 public class AllTracksDownloader {
     private static final Logger log = Logger.getLogger(AllTracksDownloader.class);
 
-    private final SingleTrackDownloader trackLoader = new SingleTrackDownloader();
+    private final SingleTrackDownloader trackLoader;
     private final ExecutorService exec = Executors.newFixedThreadPool(10);
-    private final List<Wrong> exceptions = new Vector<Wrong>();
-    private final FileDownoloadDecision fileDownoloadDecision = new FileDownoloadDecision();
+    private final List<Wrong> exceptions = new Vector<>();
+    private final FileDownoloadDecision fileDownoloadDecision;
     private int downloadCounter = 0;
 
-    public static void main(String[] args)
-            throws IOException {
-        BasicConfigurator.configure();
-        AllTracksDownloader allTracksDownloader = new AllTracksDownloader();
-        allTracksDownloader.downloadAllTracks();
+    public AllTracksDownloader(String destination, String[] archives) {
+        trackLoader = new SingleTrackDownloader(destination);
+        fileDownoloadDecision = new FileDownoloadDecision(archives);
     }
 
     public synchronized void downloadAllTracks()

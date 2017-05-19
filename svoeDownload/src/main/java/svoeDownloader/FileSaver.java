@@ -12,10 +12,14 @@ import org.apache.commons.io.IOUtils;
  * @author mnikolaev
  */
 public class FileSaver {
-    public static final String DESTINATION = "/home/mnikolaev/temp/";
+    public String destination;
+
+    public FileSaver(String destination) {
+        this.destination = destination;
+    }
 
     public void saveFile(InputStream inputStream, String bandName, String trackName) throws IOException {
-        FileOutputStream output = new FileOutputStream(getName(bandName, trackName, DESTINATION));
+        FileOutputStream output = new FileOutputStream(getName(bandName, trackName, destination));
         try {
             IOUtils.copy(inputStream, output);
         } finally {
@@ -29,10 +33,10 @@ public class FileSaver {
     }
 
     public void delete(String bandName, String trackName) {
-        File[] files = new File(DESTINATION).listFiles();
+        File[] files = new File(destination).listFiles();
         for (File file : files) {
-            if (file.getPath().replaceAll(" ", "").equals(getName(bandName, trackName, DESTINATION).replaceAll(" ", ""))) {
-                System.out.println("удаление файла " + getName(bandName, trackName, DESTINATION));
+            if (file.getPath().replaceAll(" ", "").equals(getName(bandName, trackName, destination).replaceAll(" ", ""))) {
+                System.out.println("удаление файла " + getName(bandName, trackName, destination));
                 file.delete();
             }
         }

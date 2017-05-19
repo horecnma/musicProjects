@@ -18,7 +18,11 @@ public class SingleTrackDownloader {
     private static final Logger log = Logger.getLogger(SingleTrackDownloader.class);
     private static final String USER_AGENT = "Mozilla/5.0";
 
-    private final FileSaver fileSaver = new FileSaver();
+    private final FileSaver fileSaver;
+
+    public SingleTrackDownloader(String destination) {
+        fileSaver = new FileSaver(destination);
+    }
 
     /**
      * загрузить и сохранить файл
@@ -27,8 +31,8 @@ public class SingleTrackDownloader {
      * @param trackName имя трека (как на сайте)
      * @throws Exception ошибка
      */
-    public void doLoadFile(String bandName, String trackName) throws Exception {
-        String fileNameUrl = getFileName(bandName, trackName);
+    void doLoadFile(String bandName, String trackName) throws Exception {
+        String fileNameUrl = getFileNameUrl(bandName, trackName);
         InputStream inputStream = loadFile(fileNameUrl);
         fileSaver.saveFile(inputStream, bandName, trackName.trim());
     }
@@ -44,7 +48,7 @@ public class SingleTrackDownloader {
         return con.getInputStream();
     }
 
-    public String getFileName(String bandName, String trackName) throws Exception {
+    public String getFileNameUrl(String bandName, String trackName) throws Exception {
 
         HttpsURLConnection con = openConnection("https://svoeradio.fm/api/get_file_for_track", "POST");
 
@@ -76,7 +80,7 @@ public class SingleTrackDownloader {
         return s.replaceAll("=", "%3D").replaceAll("\\+", "%2B");
     }
 
-    public HttpsURLConnection openConnection(String url, String methodType) throws IOException {
+    private HttpsURLConnection openConnection(String url, String methodType) throws IOException {
         URL obj = new URL(url);
         HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
         con.setRequestMethod(methodType);
@@ -85,7 +89,7 @@ public class SingleTrackDownloader {
         return con;
     }
 
-    public void delete(String bandName, String trackName) {
+    void delete(String bandName, String trackName) {
         fileSaver.delete(bandName, trackName);
     }
 }
