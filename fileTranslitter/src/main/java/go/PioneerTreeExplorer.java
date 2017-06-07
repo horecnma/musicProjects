@@ -7,7 +7,7 @@ import myPackage.IsFileFileFilter;
 
 /**
  * обойти дерево файлов в порядке проигрывания записей в плеере Pioneer
- * 
+ * <p>
  * User: mnikolaev<br>
  * Date: 06.11.13<br>
  */
@@ -23,38 +23,35 @@ public class PioneerTreeExplorer implements TreeExplorer {
         File startDir = new File("/media/mnikolaev/FLASH_8_GB/music/");
 
         RememberNodeFunction remember = new RememberNodeFunction();
-        FilesBeforeDirsTreeExplorer pioneerTreeExplorer = new FilesBeforeDirsTreeExplorer(remember);
-        pioneerTreeExplorer.explore(startDir);
 
-        SoutByRememberedNodeFunction nodeFunction = new SoutByRememberedNodeFunction(remember, 3);
+        FilesBeforeDirsTreeExplorer rememberExplorer = new FilesBeforeDirsTreeExplorer(remember);
+        rememberExplorer.explore(startDir);
 
-        //        FilesBeforeDirsTreeExplorer byTreeExplorer = new FilesBeforeDirsTreeExplorer(nodeFunction);
-        //        byTreeExplorer.explore(startDir);
-
-        FilesBeforeDirsTreeExplorer pionerSour = new FilesBeforeDirsTreeExplorer(nodeFunction);
-        pionerSour.explore(startDir);
+        FilesBeforeDirsTreeExplorer soutExplorer = new FilesBeforeDirsTreeExplorer(new SoutByRememberedNodeFunction(
+                new MusicIndexProvider(remember),
+                3
+        ));
+        soutExplorer.explore(startDir);
     }
 
     @Override
     public void explore(File startDir) {
-        for (int i=0; i<7; i++)
-        {
+        for (int i = 0; i < 7; i++) {
             explore(startDir, 0, i);
         }
     }
 
     private void explore(File startDir, int current, int maxTotal) {
-        if (current == maxTotal ) {
+        if (current == maxTotal) {
             File[] files = startDir.listFiles(new IsFileFileFilter());
-            if (startDir.isDirectory() && files!=null && files.length>0) {
+            if (startDir.isDirectory() && files != null && files.length > 0) {
                 worker.handleNode(startDir);
                 for (File file : files) {
                     worker.handleNode(file);
                 }
             }
         }
-        if(current < maxTotal)
-        {
+        if (current < maxTotal) {
             ++current;
             for (File file : startDir.listFiles(new IsDirFileFilter())) {
                 explore(file, current, maxTotal);

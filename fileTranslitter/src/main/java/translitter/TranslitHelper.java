@@ -1,4 +1,4 @@
-package myPackage;
+package translitter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +10,7 @@ import java.util.Map;
  * Time: 12:26
  * To change this template use File | Settings | File Templates.
  */
-public class Helper {
+public class TranslitHelper {
     private static final Map<Character, String> charMap = new HashMap<Character, String>();
 
     static {

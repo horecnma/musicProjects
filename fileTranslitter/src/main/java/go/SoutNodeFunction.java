@@ -6,11 +6,9 @@ import java.io.File;
  * User: mnikolaev<br>
  * Date: 06.11.13<br>
  */
-public class SoutNodeFunction
-        implements NodeFunction {
+public class SoutNodeFunction {
 
     private int musicRootDepth;
-    int i = 0;
 
     /**
      * @param musicRootDepth linux - 3, windows = 1
@@ -19,23 +17,9 @@ public class SoutNodeFunction
         this.musicRootDepth = musicRootDepth;
     }
 
-    @Override
-    public void handleNode(File f) {
-        if (!f.isDirectory()) {
-            boolean isMusic = f.getName().toLowerCase().endsWith(".mp3") ||
-                    f.getName().toLowerCase().endsWith(".wma");
-            if (isMusic) {
-                soutFile(f, ++i);
-            }
-        } else {
-            soutDir(f);
-        }
-    }
-
     public void soutDir(File f) {
         int starCount = musicRootDepth + 6 - f.getAbsolutePath().split(File.separator).length;
-        if(starCount == 3)
-        {
+        if (starCount == 3) {
             System.out.println("-------------------------------------------");
         }
         System.out.print("   ");

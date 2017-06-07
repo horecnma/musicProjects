@@ -11,8 +11,8 @@ import java.util.List;
 public class RememberNodeFunction
         implements NodeFunction {
 
-    private final List<String> absFilePaths = new ArrayList<String>();
-    private final List<String> absDirPaths = new ArrayList<String>();
+    private final List<File> absFilePaths = new ArrayList<File>();
+    private final List<File> absDirPaths = new ArrayList<File>();
 
     @Override
     public void handleNode(File f) {
@@ -20,18 +20,14 @@ public class RememberNodeFunction
             boolean isMusic = f.getName().toLowerCase().endsWith(".mp3") ||
                     f.getName().toLowerCase().endsWith(".wma");
             if (isMusic) {
-                absFilePaths.add(f.getAbsolutePath());
+                absFilePaths.add(f);
             }
         } else {
-            absDirPaths.add(f.getAbsolutePath());
+            absDirPaths.add(f);
         }
     }
 
-    public List<String> getAbsFilePaths() {
+    public List<File> getOrderedMp3Files() {
         return absFilePaths;
-    }
-
-    public List<String> getAbsDirPaths() {
-        return absDirPaths;
     }
 }

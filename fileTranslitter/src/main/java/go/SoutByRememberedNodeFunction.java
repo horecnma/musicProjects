@@ -1,7 +1,6 @@
 package go;
 
 import java.io.File;
-import java.util.List;
 
 /**
  * User: mnikolaev<br>
@@ -10,11 +9,11 @@ import java.util.List;
 public class SoutByRememberedNodeFunction
         implements NodeFunction {
 
-    private final List<String> absPath;
     private final SoutNodeFunction soutNodeFunction;
+    private final MusicIndexProvider musicIndexProvider;
 
-    public SoutByRememberedNodeFunction(RememberNodeFunction absPath, int musicRootDepth) {
-        this.absPath = absPath.getAbsFilePaths();
+    public SoutByRememberedNodeFunction(MusicIndexProvider musicIndexProvider, int musicRootDepth) {
+        this.musicIndexProvider = musicIndexProvider;
         soutNodeFunction = new SoutNodeFunction(musicRootDepth);
     }
 
@@ -26,7 +25,7 @@ public class SoutByRememberedNodeFunction
             boolean isMusic = f.getName().toLowerCase().endsWith(".mp3") ||
                     f.getName().toLowerCase().endsWith(".wma");
             if (isMusic) {
-                int fileNumber = absPath.indexOf(f.getAbsolutePath()) + 1;
+                int fileNumber = musicIndexProvider.getIndexOffFile(f);
                 soutNodeFunction.soutFile(f, fileNumber);
             }
         }

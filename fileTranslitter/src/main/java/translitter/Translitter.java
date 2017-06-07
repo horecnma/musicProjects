@@ -1,9 +1,9 @@
-package myPackage;
+package translitter;
 
 import java.io.File;
 
 public class Translitter {
-    Helper h = new Helper();
+    TranslitHelper h = new TranslitHelper();
 
     void translitFile(File file) {
         if (file.isDirectory()) {

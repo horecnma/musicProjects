@@ -1,11 +1,14 @@
-package myPackage;
-
-import com.google.common.base.Predicate;
+package translitter;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import com.google.common.base.Predicate;
+
+import myPackage.IsDirFileFilter;
+import myPackage.IsFileFileFilter;
 
 import static com.google.common.collect.Iterables.filter;
 import static com.google.common.collect.Lists.newArrayList;
@@ -54,7 +57,7 @@ public class MainClass {
     private static void soutDir(File dir) {
         System.out.print("    ");
         for (int i = 0; i < 4; i++) {
-            System.out.print(i<level? "*": " ");
+            System.out.print(i < level ? "*" : " ");
         }
         System.out.println(" " + dir.getName());
     }
