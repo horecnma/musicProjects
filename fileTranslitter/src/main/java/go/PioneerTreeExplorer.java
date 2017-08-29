@@ -27,10 +27,8 @@ public class PioneerTreeExplorer implements TreeExplorer {
         FilesBeforeDirsTreeExplorer rememberExplorer = new FilesBeforeDirsTreeExplorer(remember);
         rememberExplorer.explore(startDir);
 
-        FilesBeforeDirsTreeExplorer soutExplorer = new FilesBeforeDirsTreeExplorer(new SoutByRememberedNodeFunction(
-                new MusicIndexProvider(remember),
-                3
-        ));
+        FilesBeforeDirsTreeExplorer soutExplorer = new FilesBeforeDirsTreeExplorer(new SoutByRememberedNodeFunction(new MusicIndexProvider(remember),
+                                                                                                                    3));
         soutExplorer.explore(startDir);
     }
 

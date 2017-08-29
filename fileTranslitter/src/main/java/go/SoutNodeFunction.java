@@ -2,6 +2,8 @@ package go;
 
 import java.io.File;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * User: mnikolaev<br>
  * Date: 06.11.13<br>
@@ -34,6 +36,23 @@ public class SoutNodeFunction {
     }
 
     public void soutFile(File f, int number) {
-        System.out.println(number + "\t " + f.getName());
+        soutDirNameForYaRadio(f);     // hack for big directory
+        System.out.println(StringUtils.rightPad(""+number,4) + " " + f.getName());
+    }
+
+    String currentBand = "";
+    
+    private void soutDirNameForYaRadio(File f) {
+        if (f.getAbsolutePath().contains("я_radio")) {
+            String bandName = getBandName(f);
+            if (!currentBand.equals(bandName)) {
+                currentBand = bandName;
+                System.out.println("   **   " + currentBand);
+            }
+        }
+    }
+
+    private String getBandName(File f) {
+        return f.getName().split(" -")[0];
     }
 }

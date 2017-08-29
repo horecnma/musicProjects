@@ -12,7 +12,7 @@ import svoeDownloader.AllTracksDownloader;
 public class Application {
 
     private static final String DESTINATION = "/home/mnikolaev/temp/";
-    private static final String[] ARCHIVES = {
+    public static final String[] ARCHIVES = {
             "/home/mnikolaev/yandex.Disk/я_radio/fromSite/",
             "/home/mnikolaev/yandex.Disk/я_radio/fromSite/2015_01_14_update",
             "/home/mnikolaev/yandex.Disk/я_radio/fromSite/2015_02_26_update",
