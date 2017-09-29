@@ -13,7 +13,7 @@
  * (c) 2016 by NOVARDIS
  *********************************************************************/
 
-package puxDownloader;
+package com.horecnma.music.puxDownloader;
 
 import java.io.File;
 import java.io.FileInputStream;

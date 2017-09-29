@@ -1,4 +1,4 @@
-package svoeDownloader;
+package com.horecnma.music.svoe.svoeDownloader;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -10,19 +10,19 @@ import javax.net.ssl.HttpsURLConnection;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author mnikolaev
  */
+@Service
 public class SingleTrackDownloader {
     private static final Logger log = Logger.getLogger(SingleTrackDownloader.class);
     private static final String USER_AGENT = "Mozilla/5.0";
 
-    private final FileSaver fileSaver;
-
-    public SingleTrackDownloader(String destination) {
-        fileSaver = new FileSaver(destination);
-    }
+    @Autowired
+    private FileSaver fileSaver;
 
     /**
      * загрузить и сохранить файл

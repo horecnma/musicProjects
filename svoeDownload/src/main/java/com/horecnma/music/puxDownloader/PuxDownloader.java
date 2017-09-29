@@ -13,7 +13,7 @@
  * (c) 2016 by NOVARDIS
  *********************************************************************/
 
-package puxDownloader;
+package com.horecnma.music.puxDownloader;
 
 import java.io.DataOutputStream;
 import java.io.File;
@@ -34,10 +34,12 @@ import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.springframework.stereotype.Service;
 
 /**
  * @author mihnik
  */
+@Service
 public class PuxDownloader {
     private static final Logger LOG = Logger.getLogger(PuxDownloader.class);
 

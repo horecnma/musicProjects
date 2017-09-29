@@ -1,4 +1,4 @@
-package svoeDownloader;
+package com.horecnma.music.svoe.svoeDownloader;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
@@ -12,23 +12,24 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author mnikolaev
  */
+@Service
 public class AllTracksDownloader {
     private static final Logger log = Logger.getLogger(AllTracksDownloader.class);
 
-    private final SingleTrackDownloader trackLoader;
+    @Autowired
+    private SingleTrackDownloader trackLoader;
+    @Autowired
+    private FileDownoloadDecision fileDownoloadDecision;
+    
     private final ExecutorService exec = Executors.newFixedThreadPool(10);
     private final List<Wrong> exceptions = new Vector<>();
-    private final FileDownoloadDecision fileDownoloadDecision;
     private int downloadCounter = 0;
-
-    public AllTracksDownloader(String destination, String[] archives) {
-        trackLoader = new SingleTrackDownloader(destination);
-        fileDownoloadDecision = new FileDownoloadDecision(archives);
-    }
 
     public synchronized void downloadAllTracks()
             throws IOException {

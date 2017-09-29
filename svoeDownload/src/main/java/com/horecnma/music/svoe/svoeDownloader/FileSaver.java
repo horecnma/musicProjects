@@ -1,4 +1,4 @@
-package svoeDownloader;
+package com.horecnma.music.svoe.svoeDownloader;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,16 +7,18 @@ import java.io.InputStream;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 /**
  * @author mnikolaev
  */
+@Service
 public class FileSaver {
+    @Autowired
+    @Qualifier("destination")
     public String destination;
-
-    public FileSaver(String destination) {
-        this.destination = destination;
-    }
 
     public void saveFile(InputStream inputStream, String bandName, String trackName) throws IOException {
         FileOutputStream output = new FileOutputStream(getName(bandName, trackName, destination));

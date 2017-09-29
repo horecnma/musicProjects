@@ -26,7 +26,7 @@
             <version>1.8</version>
         </dependency>
 
-
+        <!-- tika - parse html-->
         <dependency>
             <groupId>org.apache.tika</groupId>
             <artifactId>tika-core</artifactId>
@@ -37,5 +37,13 @@
             <artifactId>tika-parsers</artifactId>
             <version>1.16</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>4.3.11.RELEASE</version>
+        </dependency>
+
+
     </dependencies>
 </project>
