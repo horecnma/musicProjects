@@ -7,9 +7,9 @@ import java.io.File;
  */
 public class MusicIndexProvider {
 
-    private final RememberNodeFunction provider;
+    private final RememberFilesFunction provider;
 
-    public MusicIndexProvider(RememberNodeFunction provider) {
+    public MusicIndexProvider(RememberFilesFunction provider) {
         this.provider = provider;
     }
 

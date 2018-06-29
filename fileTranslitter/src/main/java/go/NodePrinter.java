@@ -6,15 +6,15 @@ import java.io.File;
  * User: mnikolaev<br>
  * Date: 06.11.13<br>
  */
-public class SoutByRememberedNodeFunction
+public class NodePrinter
         implements NodeFunction {
 
     private final SoutNodeFunction soutNodeFunction;
     private final MusicIndexProvider musicIndexProvider;
 
-    public SoutByRememberedNodeFunction(MusicIndexProvider musicIndexProvider, int musicRootDepth) {
+    public NodePrinter(MusicIndexProvider musicIndexProvider, SoutNodeFunction soutNodeFunction) {
         this.musicIndexProvider = musicIndexProvider;
-        soutNodeFunction = new SoutNodeFunction(musicRootDepth);
+        this.soutNodeFunction = soutNodeFunction;
     }
 
     @Override

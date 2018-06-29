@@ -45,11 +45,17 @@ public class SoutNodeFunction {
     private void soutDirNameForYaRadio(File f) {
         if (f.getAbsolutePath().contains("я_radio")) {
             String bandName = getBandName(f);
-            if (!currentBand.equals(bandName)) {
+            if (!isEqualsBandName(currentBand, bandName)) {
                 currentBand = bandName;
                 System.out.println("   **   " + currentBand);
             }
         }
+    }
+
+    private boolean isEqualsBandName(String bandName, String currentBand) {
+        String s1 = currentBand.toLowerCase().replaceAll(" ", "");
+        String s2 = bandName.toLowerCase().replaceAll(" ", "");
+        return s1.equals(s2);
     }
 
     private String getBandName(File f) {

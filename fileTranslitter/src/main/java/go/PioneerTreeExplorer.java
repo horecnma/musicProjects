@@ -22,13 +22,12 @@ public class PioneerTreeExplorer implements TreeExplorer {
         // sudo fatsort -D MUSIC /dev/sdb1
         File startDir = new File("/media/mnikolaev/FLASH_8_GB/music/");
 
-        RememberNodeFunction remember = new RememberNodeFunction();
+        RememberFilesFunction remember = new RememberFilesFunction();
 
         FilesBeforeDirsTreeExplorer rememberExplorer = new FilesBeforeDirsTreeExplorer(remember);
         rememberExplorer.explore(startDir);
 
-        FilesBeforeDirsTreeExplorer soutExplorer = new FilesBeforeDirsTreeExplorer(new SoutByRememberedNodeFunction(new MusicIndexProvider(remember),
-                                                                                                                    3));
+        FilesBeforeDirsTreeExplorer soutExplorer = new FilesBeforeDirsTreeExplorer(new NodePrinter(new MusicIndexProvider(remember), new SoutNodeFunction(3)));
         soutExplorer.explore(startDir);
     }
 

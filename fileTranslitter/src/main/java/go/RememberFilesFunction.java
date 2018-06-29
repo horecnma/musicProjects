@@ -8,7 +8,7 @@ import java.util.List;
  * User: mnikolaev<br>
  * Date: 06.11.13<br>
  */
-public class RememberNodeFunction
+public class RememberFilesFunction
         implements NodeFunction {
 
     private final List<File> absFilePaths = new ArrayList<File>();

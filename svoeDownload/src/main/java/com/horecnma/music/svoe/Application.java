@@ -43,6 +43,7 @@ public class Application {
                     "/home/mnikolaev/yandex.Disk/я_radio/fromSite/2017_01_13_update",
                     "/home/mnikolaev/yandex.Disk/я_radio/fromSite/2017_03_20_update",
                     "/home/mnikolaev/yandex.Disk/я_radio/fromSite/2017_08_29_update",
+                    "/home/mnikolaev/yandex.Disk/я_radio/fromSite/2018_02_14_update",
                     "/home/mnikolaev/yandex.Disk/я_radio/trash/",
                     "/home/mnikolaev/temp/"};
         }
