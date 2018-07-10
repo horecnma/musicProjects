@@ -5,13 +5,14 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.horecnma.music.svoe.svoeDownloader.dto.Track;
+import com.horecnma.music.svoe.svoeDownloader.tracks.BandListTrackProvider;
+import com.horecnma.music.svoe.svoeDownloader.tracks.PremiereTrackProvider;
+import com.horecnma.music.svoe.svoeDownloader.tracks.TrackProvider;
 
 import net.sf.ehcache.util.NamedThreadFactory;
 
@@ -20,16 +21,29 @@ import net.sf.ehcache.util.NamedThreadFactory;
  */
 @ContextConfiguration(classes = {TestConfig.class})
 public class RealTrackProviderITCase extends AbstractJUnit4SpringContextTests {
-    private static final Logger LOG = LoggerFactory.getLogger(RealTrackProviderITCase.class);
 
     @Autowired
-    private BandListTrackProvider trackProvider;
+    private BandListTrackProvider bandListTrackProvider;
+    @Autowired
+    private PremiereTrackProvider premiereTrackProvider;
+
     private ExecutorService executor = Executors.newFixedThreadPool(4, new NamedThreadFactory("test-"));
 
     @Test
-    public void shouldName()
+    public void testBandListTrackProvider()
             throws Exception {
-        TrackQueue tracks = trackProvider.startGetTracks();
+        runProvider(bandListTrackProvider);
+    }
+
+    @Test
+    public void testPremiereTrackProvider()
+            throws Exception {
+        runProvider(premiereTrackProvider);
+    }
+
+    private void runProvider(TrackProvider trackQueue)
+            throws InterruptedException {
+        TrackQueue tracks = trackQueue.startGetTracks();
         executor.execute(() -> {
             while (!tracks.isCommitted()) {
                 Track nextTrack = tracks.getNextTrack();

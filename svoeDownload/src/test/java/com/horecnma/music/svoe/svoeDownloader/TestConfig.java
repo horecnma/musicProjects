@@ -8,6 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+import com.horecnma.music.svoe.svoeDownloader.tracks.TrackProvider;
+
 /**
  * @author Mikhail
  */
@@ -29,6 +31,11 @@ public class TestConfig {
         @Bean
         ExecutorService trackProviderExecutor() {
             return Executors.newSingleThreadExecutor();
+        }
+
+        @Bean
+        AllTracksDownloader allTracksDownloader(TrackProvider premiereTrackProvider) {
+          return new AllTracksDownloader(premiereTrackProvider);
         }
     }
 }

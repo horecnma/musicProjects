@@ -1,6 +1,8 @@
 package com.horecnma.music.svoe;
 
 import java.io.InputStream;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -22,8 +24,8 @@ public class SingleTreckDownloads
         FileSaver f = ctx.getBean(FileSaver.class);
         SingleTrackDownloader singleTrackDownloader = ctx.getBean(SingleTrackDownloader.class);
 
-        String bandName = "Харакири";
-        String trackName = "Космос Станет Ближе";
+        String bandName = "Animal Джаz";
+        String trackName = "В Серебре";
         String fileName = singleTrackDownloader.svoeConnector.getFileNameUrl(bandName, trackName);
         InputStream inputStream = singleTrackDownloader.svoeConnector.loadFile(fileName);
         f.saveFile(inputStream, bandName, trackName);
@@ -43,5 +45,15 @@ public class SingleTreckDownloads
         String destination() {
             return "/home/mnikolaev/temp/";
         }
+        @Bean
+        ExecutorService trackProviderExecutor() {
+            return Executors.newSingleThreadExecutor();
+        }
+
+        @Bean
+        ExecutorService trackDownloadExecutor() {
+            return Executors.newFixedThreadPool(10);
+        }
+
     }
 }

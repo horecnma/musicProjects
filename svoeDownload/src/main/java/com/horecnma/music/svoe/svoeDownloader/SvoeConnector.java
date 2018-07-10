@@ -3,20 +3,19 @@ package com.horecnma.music.svoe.svoeDownloader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-
-import javax.net.ssl.HttpsURLConnection;
 
 import org.apache.commons.io.IOUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.horecnma.music.svoe.svoeDownloader.dto.BandLink;
@@ -29,7 +28,7 @@ import static java.util.stream.Collectors.toList;
  */
 @Service
 public class SvoeConnector {
-    private static final Logger LOG = LoggerFactory.getLogger(SvoeConnector.class);
+    private static final org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(SvoeConnector.class);
 
     private static final String USER_AGENT = "Mozilla/5.0";
 
@@ -54,13 +53,25 @@ public class SvoeConnector {
         return result;
     }
 
+    public List<Track> getPremieresFromPage(int pageIndex)
+            throws IOException, SocketTimeoutException {
+        Document doc = Jsoup.connect("http://svoeradio.fm/air/premiers-on-air/page/" + (pageIndex + 1)).get();
+        return doc.select("article.standard h2").stream()
+                  .map(it->newTrackFromSiteBandTrack(it.text().trim()))
+                  .collect(toList());
+    }
+
+    private Track newTrackFromSiteBandTrack(String bandAndName) {
+        String[] split = bandAndName.split("—", 2);
+        return new Track(split[0].trim(), split[1].trim());
+    }
+
     public InputStream loadFile(String fileNameUrl) throws IOException {
-        String fullUrl = "https://svoeradio.fm" + fileNameUrl;
-        HttpsURLConnection con = openConnection(fullUrl, "GET");
+        HttpURLConnection con = openConnection(fileNameUrl, "GET");
 
         int responseCode = con.getResponseCode();
         if (responseCode != 200) {
-            throw new IOException("загрузка файла " + fullUrl + " respcode = " + responseCode);
+            throw new IOException("загрузка файла " + fileNameUrl + " respcode = " + responseCode);
         }
         return con.getInputStream();
     }
@@ -68,11 +79,11 @@ public class SvoeConnector {
     public String getFileNameUrl(String bandName, String trackName)
             throws Exception {
 
-        HttpsURLConnection con = openConnection("https://svoeradio.fm/api/get_file_for_track", "POST");
+        HttpURLConnection con = openConnection("https://svoeradio.fm/api/get_file_for_track", "POST");
 
         String requestParams = "";
-        requestParams += "art=" + wrap(Base64.getEncoder().encodeToString(bandName.getBytes("UTF-8")));
-        requestParams += "&trk=" + wrap(Base64.getEncoder().encodeToString(trackName.getBytes("UTF-8")));
+        requestParams += "art=" + wrap(Base64.getEncoder().encodeToString(bandName.getBytes(StandardCharsets.UTF_8)));
+        requestParams += "&trk=" + wrap(Base64.getEncoder().encodeToString(trackName.getBytes(StandardCharsets.UTF_8)));
 //        requestParams += "art=" + wrap(DatatypeConverter.printBase64Binary(bandName.getBytes("UTF-8")));
 //        requestParams += "&trk=" + wrap(DatatypeConverter.printBase64Binary(trackName.getBytes("UTF-8")));
         requestParams += "&high=" + "yes";
@@ -90,7 +101,7 @@ public class SvoeConnector {
         }
 
         try (InputStream inputStream = con.getInputStream()) {
-            return IOUtils.toString(inputStream).trim();
+            return "http:"+IOUtils.toString(inputStream).trim();
         }
     }
 
@@ -98,10 +109,10 @@ public class SvoeConnector {
         return s.replaceAll("=", "%3D").replaceAll("\\+", "%2B");
     }
 
-    private HttpsURLConnection openConnection(String url, String methodType)
+    private HttpURLConnection openConnection(String url, String methodType)
             throws IOException {
         URL obj = new URL(url);
-        HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+        java.net.HttpURLConnection con = (java.net.HttpURLConnection) obj.openConnection();
         con.setRequestMethod(methodType);
         con.setRequestProperty("User-Agent", USER_AGENT);
         con.setRequestProperty("Accept-Language", "ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4");

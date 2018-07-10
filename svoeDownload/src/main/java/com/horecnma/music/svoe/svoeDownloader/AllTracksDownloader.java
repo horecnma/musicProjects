@@ -3,39 +3,41 @@ package com.horecnma.music.svoe.svoeDownloader;
 import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.horecnma.music.svoe.svoeDownloader.dto.Track;
+import com.horecnma.music.svoe.svoeDownloader.tracks.TrackProvider;
 
 /**
  * @author mnikolaev
  */
-@Service
 public class AllTracksDownloader {
-    private static final Logger LOG = Logger.getLogger(AllTracksDownloader.class);
+    private static final org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(AllTracksDownloader.class);
 
     @Autowired
     private SingleTrackDownloader trackLoader;
     @Autowired
     private FileDownoloadDecision fileDownoloadDecision;
-
-    private final ExecutorService exec = Executors.newFixedThreadPool(10);
+    @Autowired
+    private ExecutorService trackDownloadExecutor;
     private final List<Wrong> exceptions = new Vector<>();
     private int downloadCounter = 0;
 
-    @Autowired
-    private BandListTrackProvider bandListTrackProvider;
+    private final TrackProvider trackProvider;
 
-    public synchronized void downloadAllTracks() {
-        TrackQueue tracks = bandListTrackProvider.startGetTracks();
-        exec.execute(new DownloadTracksTask(tracks));
+    public AllTracksDownloader(TrackProvider trackProvider) {
+        this.trackProvider = trackProvider;
+    }
+
+    public synchronized void downloadAllTracks(){
+        TrackQueue tracks = trackProvider.startGetTracks();
+        trackDownloadExecutor.execute(new DownloadTracksTask(tracks));
+        trackDownloadExecutor.execute(new DownloadTracksTask(tracks));
+        trackDownloadExecutor.execute(new DownloadTracksTask(tracks));
+        trackDownloadExecutor.execute(new DownloadTracksTask(tracks));
+        trackDownloadExecutor.execute(new DownloadTracksTask(tracks));
         downloadCounter = 0;
-        System.out.println("Завершение");
-        exec.shutdown();
     }
 
     private void doSynchDownload(Track track) {
@@ -91,12 +93,12 @@ public class AllTracksDownloader {
 
         @Override
         public void run() {
-            while (!tracks.isCommitted()) {
+            while (!tracks.isCommitted() || tracks.hasNextTrack()) {
                 Track nextTrack = tracks.getNextTrack();
                 if (nextTrack == null) {
                     waitForNextTrack(500);
                 } else if (fileDownoloadDecision.shouldDownload(nextTrack)) {
-                    AllTracksDownloader.this.doSynchDownload(nextTrack);
+                    doSynchDownload(nextTrack);
                 }
             }
             LOG.debug("task finished");

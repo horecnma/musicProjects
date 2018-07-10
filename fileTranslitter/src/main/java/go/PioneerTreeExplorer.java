@@ -19,6 +19,7 @@ public class PioneerTreeExplorer implements TreeExplorer {
     }
 
     public static void main(String[] args) {
+        // df -aTh
         // sudo fatsort -D MUSIC /dev/sdb1
         File startDir = new File("/media/mnikolaev/FLASH_8_GB/music/");
 

@@ -37,6 +37,10 @@ public class TrackQueue {
         return tracks.poll();
     }
 
+    public synchronized boolean hasNextTrack(){
+        return !tracks.isEmpty();
+    }
+
     public synchronized boolean isCommitted(){
         return committed;
     }
@@ -45,11 +49,11 @@ public class TrackQueue {
         committed = true;
     }
 
-    public int totalSize() {
+    public synchronized int totalSize() {
         return totalCount;
     }
 
-    public int currentSize() {
+    public synchronized int currentSize() {
         return tracks.size();
     }
 }
