@@ -16,24 +16,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="fileTranslitter" />
-        <module name="mp3_tag_changer" />
-        <module name="musicComparer" />
         <module name="svoeDownload" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="fileTranslitter" target="1.8" />
-      <module name="mp3_tag_changer" target="1.8" />
-      <module name="musicComparer" target="1.8" />
-      <module name="myMusicProjects" target="1.5" />
       <module name="svoeDownload" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="InspectionProjectProfileManager">
     <profile version="1.0">
       <option name="myName" value="Project Default" />
-      <inspection_tool class="CachedNumberConstructorCall" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="CheckStyle-IDEA" enabled="true" level="checkStyle" enabled_by_default="true" />
       <inspection_tool class="ErrorRethrown" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="FieldMayBeFinal" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -70,10 +62,6 @@
         <IGNORE_ACCESSORS value="true" />
       </inspection_tool>
       <inspection_tool class="JavaLangImport" enabled="true" level="WARNING" enabled_by_default="true" />
-      <inspection_tool class="LoggerInitializedWithForeignClass" enabled="false" level="WARNING" enabled_by_default="false">
-        <option name="loggerClassName" value="org.apache.log4j.Logger,org.slf4j.LoggerFactory,org.apache.commons.logging.LogFactory,java.util.logging.Logger" />
-        <option name="loggerFactoryMethodName" value="getLogger,getLogger,getLog,getLogger" />
-      </inspection_tool>
       <inspection_tool class="MarkerInterface" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="NonFinalUtilityClass" enabled="true" level="WARNING" enabled_by_default="true" />
       <inspection_tool class="OnDemandImport" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -94,80 +82,19 @@
     </profile>
     <version value="1.0" />
   </component>
-  <component name="KotlinCommonCompilerArguments">
-    <option name="apiVersion" value="1.1" />
-    <option name="languageVersion" value="1.1" />
-  </component>
-  <component name="MarkdownNavigator.ProfileManager" default="" />
-  <component name="MarkdownProjectSettings">
-    <PreviewSettings splitEditorLayout="SPLIT" splitEditorPreview="PREVIEW" useGrayscaleRendering="false" zoomFactor="1.0" maxImageWidth="0" showGitHubPageIfSynced="false" allowBrowsingInPreview="false" synchronizePreviewPosition="true" highlightPreviewType="NONE" highlightFadeOut="5" highlightOnTyping="true" synchronizeSourcePosition="true">
-      <PanelProvider>
-        <provider providerId="com.vladsch.idea.multimarkdown.editor.swing.html.panel" providerName="Default - Swing" />
-      </PanelProvider>
-    </PreviewSettings>
-    <ParserSettings>
-      <PegdownExtensions>
-        <option name="ABBREVIATIONS" value="false" />
-        <option name="ANCHORLINKS" value="true" />
-        <option name="ATXHEADERSPACE" value="true" />
-        <option name="AUTOLINKS" value="true" />
-        <option name="DEFINITIONS" value="false" />
-        <option name="FENCED_CODE_BLOCKS" value="true" />
-        <option name="FOOTNOTES" value="false" />
-        <option name="FORCELISTITEMPARA" value="false" />
-        <option name="HARDWRAPS" value="false" />
-        <option name="QUOTES" value="false" />
-        <option name="RELAXEDHRULES" value="true" />
-        <option name="SMARTS" value="false" />
-        <option name="STRIKETHROUGH" value="true" />
-        <option name="SUPPRESS_HTML_BLOCKS" value="false" />
-        <option name="SUPPRESS_INLINE_HTML" value="false" />
-        <option name="TABLES" value="true" />
-        <option name="TASKLISTITEMS" value="true" />
-        <option name="TOC" value="false" />
-        <option name="TRACE_PARSER" value="false" />
-        <option name="WIKILINKS" value="true" />
-      </PegdownExtensions>
-      <ParserOptions>
-        <option name="COMMONMARK_LISTS" value="false" />
-        <option name="DUMMY" value="false" />
-        <option name="EMOJI_SHORTCUTS" value="true" />
-        <option name="FLEXMARK_FRONT_MATTER" value="false" />
-        <option name="GFM_TABLE_RENDERING" value="true" />
-        <option name="GITBOOK_URL_ENCODING" value="false" />
-        <option name="GITHUB_EMOJI_URL" value="false" />
-        <option name="GITHUB_LISTS" value="true" />
-        <option name="GITHUB_WIKI_LINKS" value="true" />
-        <option name="JEKYLL_FRONT_MATTER" value="false" />
-        <option name="SIM_TOC_BLANK_LINE_SPACER" value="true" />
-      </ParserOptions>
-    </ParserSettings>
-    <HtmlSettings headerTopEnabled="false" headerBottomEnabled="false" bodyTopEnabled="false" bodyBottomEnabled="false" embedUrlContent="false" addPageHeader="true">
-      <GeneratorProvider>
-        <provider providerId="com.vladsch.idea.multimarkdown.editor.swing.html.generator" providerName="Default Swing HTML Generator" />
-      </GeneratorProvider>
-      <headerTop />
-      <headerBottom />
-      <bodyTop />
-      <bodyBottom />
-    </HtmlSettings>
-    <CssSettings previewScheme="UI_SCHEME" cssUri="" isCssUriEnabled="false" isCssTextEnabled="false" isDynamicPageWidth="true">
-      <StylesheetProvider>
-        <provider providerId="com.vladsch.idea.multimarkdown.editor.swing.html.css" providerName="Default Swing Stylesheet" />
-      </StylesheetProvider>
-      <ScriptProviders />
-      <cssText />
-    </CssSettings>
-    <HtmlExportSettings updateOnSave="false" parentDir="$ProjectFileDir$" targetDir="$ProjectFileDir$" cssDir="" scriptDir="" plainHtml="false" imageDir="" copyLinkedImages="false" imageUniquifyType="0" targetExt="" useTargetExt="false" noCssNoScripts="false" linkToExportedHtml="true" exportOnSettingsChange="true" regenerateOnProjectOpen="false" />
-    <LinkMapSettings>
-      <textMaps />
-    </LinkMapSettings>
-  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/fileTranslitter/pom.xml" />
+        <option value="$PROJECT_DIR$/mp3_tag_changer/pom.xml" />
+        <option value="$PROJECT_DIR$/musicComparer/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="Palette2">
@@ -294,38 +221,13 @@
   <component name="ProjectCodeStyleConfiguration">
     <option name="PREFERRED_PROJECT_CODE_STYLE" value="MUVI" />
   </component>
-  <component name="ProjectCodeStyleSettingsManager">
-    <option name="PER_PROJECT_SETTINGS">
-      <value />
-    </option>
-    <option name="PREFERRED_PROJECT_CODE_STYLE" value="MUVI" />
-  </component>
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/fileTranslitter/fileTranslitter.iml" filepath="$PROJECT_DIR$/fileTranslitter/fileTranslitter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mp3_tag_changer/mp3_tag_changer.iml" filepath="$PROJECT_DIR$/mp3_tag_changer/mp3_tag_changer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/musicComparer/musicComparer.iml" filepath="$PROJECT_DIR$/musicComparer/musicComparer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/myMusicProjects.iml" filepath="$PROJECT_DIR$/myMusicProjects.iml" />
       <module fileurl="file://$PROJECT_DIR$/svoeDownload/svoeDownload.iml" filepath="$PROJECT_DIR$/svoeDownload/svoeDownload.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" project-jdk-name="1.8 (1)" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" project-jdk-name="1.8 (1)" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/classes" />
-  </component>
-  <component name="PropertiesComponent">
-    <property name="GoToClass.includeLibraries" value="false" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="last_opened_file_path" value="D:/codereview/common" />
-    <property name="options.lastSelected" value="preferences.keymap" />
-    <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.splitter.details.proportions" value="0.2" />
-  </component>
-  <component name="SvnConfiguration">
-    <configuration>C:\Users\Михаил\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
@@ -705,6 +607,17 @@
         <root url="jar://$MAVEN_REPOSITORY$/joda-time/joda-time/2.2/joda-time-2.2-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: junit:junit:4.12">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: log4j:log4j:1.2.17">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/log4j/log4j/1.2.17/log4j-1.2.17.jar!/" />
@@ -716,17 +629,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/log4j/log4j/1.2.17/log4j-1.2.17-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: net.java.dev.jna:jna:4.0.0">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/jna/jna/4.0.0/jna-4.0.0.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/jna/jna/4.0.0/jna-4.0.0-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/jna/jna/4.0.0/jna-4.0.0-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: net.java.dev.jna:jna:4.1.0">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/jna/jna/4.1.0/jna-4.1.0.jar!/" />
@@ -736,17 +638,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/jna/jna/4.1.0/jna-4.1.0-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: net.java.dev.jna:platform:3.5.2">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/jna/platform/3.5.2/platform-3.5.2.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/jna/platform/3.5.2/platform-3.5.2-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/net/java/dev/jna/platform/3.5.2/platform-3.5.2-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: net.jcip:jcip-annotations:1.0">
@@ -1288,6 +1179,17 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/gagravarr/vorbis-java-tika/0.8/vorbis-java-tika-0.8-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: org.hamcrest:hamcrest-core:1.3">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: org.itadaki:bzip2:0.9.1">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/org/itadaki/bzip2/0.9.1/bzip2-0.9.1.jar!/" />
@@ -1475,17 +1377,6 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/tukaani/xz/1.6/xz-1.6-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org:jaudiotagger:2.0.3">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/jaudiotagger/2.0.3/jaudiotagger-2.0.3.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/jaudiotagger/2.0.3/jaudiotagger-2.0.3-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/jaudiotagger/2.0.3/jaudiotagger-2.0.3-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: regexp:regexp:1.3">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/regexp/regexp/1.3/regexp-1.3.jar!/" />
@@ -1497,32 +1388,5 @@
         <root url="jar://$MAVEN_REPOSITORY$/regexp/regexp/1.3/regexp-1.3-sources.jar!/" />
       </SOURCES>
     </library>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8 (1)</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ScopeChooserConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
