@@ -24,8 +24,8 @@ public class SingleTreckDownloads
 
         String bandName = "Харакири";
         String trackName = "Космос Станет Ближе";
-        String fileName = singleTrackDownloader.getFileNameUrl(bandName, trackName);
-        InputStream inputStream = singleTrackDownloader.loadFile(fileName);
+        String fileName = singleTrackDownloader.svoeConnector.getFileNameUrl(bandName, trackName);
+        InputStream inputStream = singleTrackDownloader.svoeConnector.loadFile(fileName);
         f.saveFile(inputStream, bandName, trackName);
 //        InputStream inputStream = svoeDownloader.loadFile(fileName);
 //        inputStream.close();

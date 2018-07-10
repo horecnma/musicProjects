@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.beust.jcommander.internal.Lists;
+import com.horecnma.music.svoe.svoeDownloader.dto.Track;
 
 /**
  *
@@ -30,7 +31,9 @@ public class FileDownoloadDecision {
         }
     }
 
-    public boolean shouldDownload(String bandName, String trackName) {
+    public boolean shouldDownload(Track track) {
+        String bandName = track.getBand();
+        String trackName = track.getTrack();
         return !exists(bandName.trim(), trackName.trim())
                 && !bandName.contains("Программа ЖИВЫЕ");
     }

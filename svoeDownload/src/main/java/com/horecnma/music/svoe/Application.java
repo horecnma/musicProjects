@@ -1,6 +1,8 @@
 package com.horecnma.music.svoe;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.apache.log4j.BasicConfigurator;
 import org.springframework.context.ApplicationContext;
@@ -51,6 +53,11 @@ public class Application {
         @Bean("destination")
         String destination() {
             return "/home/mnikolaev/temp/";
+        }
+
+        @Bean
+        ExecutorService trackProviderExecutor() {
+          return Executors.newSingleThreadExecutor();
         }
     }
 }
