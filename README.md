@@ -1,4 +1,3 @@
 # musicProjects
-Содержит 
-* модуль загрузки композиций с сайта svoeRadio
-* модуль составления списка песен для плеера pioneer
+* module of downloading tracks from svoeRadio.fm
+* module of creating ordered tracks list for pioneer player
